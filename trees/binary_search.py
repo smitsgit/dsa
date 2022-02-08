@@ -31,18 +31,18 @@ class BinarySearchTree:
         if self.root is None:
             self.root = node
         else:
-            parent = self.root
+            tmp = self.root
             while True:
-                if data < parent.data:
-                    if parent.left is None:
-                        parent.left = node
+                if data < tmp.data:
+                    if tmp.left is None:
+                        tmp.left = node
                         break
-                    parent = parent.left
+                    tmp = tmp.left
                 else:
-                    if parent.right is None:
-                        parent.right = node
+                    if tmp.right is None:
+                        tmp.right = node
                         break
-                    parent = parent.right
+                    tmp = tmp.right
 
     def in_order(self, root):
         if not root:
