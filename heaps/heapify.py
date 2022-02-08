@@ -32,6 +32,16 @@ def remove(lst: list):
     return item
 
 
+def heap_sort(lst):
+    non_leaf_node_index = len(lst) // 2 - 1
+    for root_index in range(non_leaf_node_index, -1, -1):
+        heapify(lst, root_index)
+
+    for index in range(len(lst) - 1, -1, -1):
+        lst[0], lst[index] = lst[index], lst[0]
+        heapify(lst, 0)
+
+
 def main():
     data = [20, 30, 10, 40, 5, 70]
     non_leaf_node_index = len(data) // 2 - 1
@@ -40,6 +50,8 @@ def main():
 
     print(data)
     remove(data)
+    print(data)
+    heap_sort(data)
     print(data)
 
 
