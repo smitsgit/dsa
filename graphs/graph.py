@@ -46,6 +46,9 @@ class Graph:
 
         while stack:
             next_node = stack.pop()
+
+            # stack can contain duplicate nodes but we print it only once
+            # ex: take a look at node 'g' in the debug log
             if next_node not in visited:
                 print(next_node, end=' ')
                 visited.add(next_node)
@@ -85,7 +88,10 @@ def main():
 
     g = Graph(simple)
     # g.depth_first('a')
-    g.bread_first('a')
+    # g.bread_first('a')
+    for item in range(5):
+        data = next(g.depth_first_generator('a'))
+        print(data)
 
 
 if __name__ == '__main__':
