@@ -26,12 +26,6 @@ class Graph:
     def neighbours(self, node):
         return self._graph[node]
 
-    def add_edge(self, from_, to):
-        self._graph[from_].append(to)
-
-    def is_edge(self, from_, to):
-        return to in self._graph[from_]
-
     def get_low_cost(self, known_distance, unvisited):
         return min({key: value for key, value in known_distance.items() if value and key in unvisited},
                    key=lambda k: known_distance[k][1])
