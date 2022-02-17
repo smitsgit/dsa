@@ -57,6 +57,31 @@ class Graph:
                     stack.append(neighbor)
             print(stack)
 
+    def depth_util(self, stack=None, visited=None):
+        for neighbor in self.neighbours(stack[-1]):
+            if neighbor in stack:
+                print("Cycle present", neighbor)
+            if neighbor not in visited:
+                stack.append(neighbor)
+                visited.add(neighbor)
+                print(neighbor, stack, sep=' ')
+                self.depth_util(stack, visited)
+        stack.pop()
+
+    def depth_first_recursive_stack(self, start_node, stack=None):
+        # this implmentation is based on
+        # https://www.youtube.com/watch?v=vf-cxgUXcMk&list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU&index=81
+        # keep adding elements to stack and print them
+        # pop from the stack when no unvisted neighbors are found
+        # stack automatically shrinks
+        if not stack:
+            stack = [start_node]
+            visited = set()
+            visited.add(start_node)
+            print(start_node, stack, sep=' ')
+
+        self.depth_util(stack, visited)
+
     def bread_first(self, start_node):
         queue = []
         visited = set()
@@ -87,11 +112,11 @@ def main():
     }
 
     g = Graph(simple)
-    # g.depth_first('a')
+    g.depth_first_recursive_stack('a')
     # g.bread_first('a')
-    for item in range(5):
-        data = next(g.depth_first_generator('a'))
-        print(data)
+    # for item in range(5):
+    #     data = next(g.depth_first_generator('a'))
+    #     print(data)
 
 
 if __name__ == '__main__':
